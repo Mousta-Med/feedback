@@ -49,20 +49,25 @@ class feedback
         wp_enqueue_script(
             'feedback',
             plugin_dir_url(__FILE__) . 'js/feedback.js',
-            array(),
+            array('jquery'),
             1,
             true
         );
     }
     public function load_shortcode()
     { ?>
-        <h1>Feedback Form</h1>
-        <p>pleas give us your opinion about this service</p>
-        <input type="text" name="" id="" placeholder="Name">
-        <input type="email" name="" id="" placeholder="Email">
-        <input type="tel" name="" id="" placeholder="Phone">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <input type="button" value="submit">
+        <div class="feedback">
+            <h1>Feedback Form</h1>
+            <p>pleas give us your opinion about this service</p>
+            <form id="feedback" action="">
+                <input type="text" name="name" class="form-control" id="" placeholder="Name">
+                <input type="email" name="email" class="form-control" id="" placeholder="Email">
+                <input type="tel" name="phone" class="form-control" id="" placeholder="Phone">
+                <textarea name="message" class="form-control" id="" cols="30" rows="10" placeholder="Enter your message"></textarea>
+                <input type="submit" class="form-control success" value="Send">
+            </form>
+        </div>
+
 <?php }
 }
 
