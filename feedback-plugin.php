@@ -74,16 +74,16 @@ class feedback
     public function load_shortcode()
     { ?>
         <div class="feedback">
-            <h1>Feedback Form</h1>
-            <p>pleas give us your opinion about this service</p>
+            <h1>Feedback</h1>
+            <p>please give us your opinion about this service</p>
             <form id="feedback" action="">
                 <label for="name">Name:</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" required placeholder="Enter Your Name">
                 <label for="note">Note:</label>
-                <input type="number" name="note" id="note" min="0" max="5" required>
+                <input type="number" name="note" id="note" min="0" max="5" required placeholder="Enter Note From 0 To 5">
                 <br>
                 <label for="remarque">Remarque:</label>
-                <textarea name="remarque" id="remarque" rows="5" required></textarea>
+                <textarea name="remarque" id="remarque" rows="5" required placeholder="Enter Your Remarque"></textarea>
                 <br>
                 <input type="submit" class="form-control success" value="Send">
             </form>
@@ -97,7 +97,6 @@ class feedback
             jQuery(feedback).submit(function(event) {
                 event.preventDefault();
                 let form = jQuery(this).serialize();
-                console.log(form);
                 jQuery.ajax({
                     method: 'post',
                     url: '<?php echo get_rest_url(null, 'feedback/send-email') ?>',
@@ -106,6 +105,8 @@ class feedback
                     },
                     data: form
                 })
+                alert('Your feedback sent successfuly');
+                jQuery('#name, #note, #remarque').val('');
             });
         </script>
 <?php }
