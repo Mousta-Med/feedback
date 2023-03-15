@@ -23,7 +23,6 @@ class feedback
         add_action('add_meta_boxes', array($this, 'create_meta_box'));
         add_shortcode('feedback-form', array($this, 'load_shortcode'));
     }
-
     public function create_meta_box()
     {
         add_meta_box('feedback', 'Submission', array($this, 'display_submission'), 'Feedback_Form');
@@ -52,6 +51,11 @@ class feedback
                 'singular_name' => 'Feedback Form Entry'
             ),
             'menu_icon' => 'dashicons-media-text',
+            'capability_type' => 'post',
+            'capabilities' => array(
+                'create_posts' => false,
+            ),
+            'map_meta_cap' => true,
         );
         register_post_type('Feedback_Form', $argm);
     }
