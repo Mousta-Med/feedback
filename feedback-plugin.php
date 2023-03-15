@@ -23,6 +23,7 @@ class feedback
         add_action('add_meta_boxes', array($this, 'create_meta_box'));
         add_shortcode('feedback-form', array($this, 'load_shortcode'));
     }
+
     public function create_meta_box()
     {
         add_meta_box('feedback', 'Submission', array($this, 'display_submission'), 'Feedback_Form');
@@ -72,11 +73,15 @@ class feedback
         );
     }
     public function load_shortcode()
-    { ?>
+    {
+        $page_id = get_the_ID();
+?>
+
         <div class="feedback">
             <h1>Feedback</h1>
             <p>please give us your opinion about this service</p>
             <form id="feedback" action="">
+                <input type="hidden" name="page_id" id="id" value="<?php echo "$page_id"; ?>">
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name" required placeholder="Enter Your Name">
                 <label for="note">Note:</label>
